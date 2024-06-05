@@ -29,14 +29,14 @@ namespace DockerLab1
                 })
                 .AddIdentityCookies();
 
-            var server = builder.Configuration["DBServer"] ?? "localhost";
+            var server = builder.Configuration["DBServer"] ?? "ms-sql-server";
             var port = builder.Configuration["DBPort"] ?? "1433";
             var user = builder.Configuration["DBUser"] ?? "SA";
             var password = builder.Configuration["DBPassword"] ?? "1qasde32S!";
             var database = builder.Configuration["Database"] ?? "dockerDB";
             // var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer($"Server={server},{port};Initial Catalog={database};User ID={user};Password={password};"));
+                options.UseSqlServer($"Server={server},{port};Initial Catalog={database};User ID={user};Password={password}; TrustServerCertificate=True;"));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services.AddIdentityCore<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
