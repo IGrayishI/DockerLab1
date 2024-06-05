@@ -15,7 +15,7 @@ namespace DockerLab1.Data
 
         public static void SeedData(ApplicationDbContext context)
         {
-            System.Console.WriteLine("Appling Migration");
+            System.Console.WriteLine("Applying Migration");
             context.Database.Migrate();
         }
 
