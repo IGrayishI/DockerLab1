@@ -30,7 +30,7 @@ namespace DockerLab1
                 .AddIdentityCookies();
 
             var server = builder.Configuration["DBServer"] ?? "localhost";
-            var port = builder.Configuration["DBPort"] ?? "1443";
+            var port = builder.Configuration["DBPort"] ?? "1433";
             var user = builder.Configuration["DBUser"] ?? "SA";
             var password = builder.Configuration["DBPassword"] ?? "1qasde32S!";
             var database = builder.Configuration["Database"] ?? "dockerDB";
@@ -70,7 +70,9 @@ namespace DockerLab1
 
             // Add additional endpoints required by the Identity /Account Razor components.
             app.MapAdditionalIdentityEndpoints();
-
+            
+            PrepDB.PrepPop(app);
+            
             app.Run();
         }
     }
